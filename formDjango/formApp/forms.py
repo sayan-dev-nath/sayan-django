@@ -10,5 +10,5 @@ class contactForm(forms.Form):
     check = forms.BooleanField(label="User Check")
     birthday = forms.DateField(label="Birthday")
     appointment = forms.DateTimeField()
-    CHOICES = [('s', 'small'), ('m','medium'), ('l', 'large')]
+    CHOICES = [("s", "small"), ("m", "medium"), ("l", "large")]
     size = forms.ChoiceField(choices=CHOICES)
