@@ -18,4 +18,11 @@ def home(request):
             recipe_image=recipe_image,
         )
         return redirect("/")
-    return render(request, "index.html")
+    recipes = Recipe.objects.all()
+    return render(request, "index.html", context={"recipes": recipes})
+
+
+def delete_recipe(request, id):
+    quaryset = Recipe.objects.get(id=id)
+    quaryset.delete()
+    return redirect("/")
