@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block start %}
+  <h1>Django Form Page</h1>
+
+  {% load crispy_forms_tags %}
+  <form method="post" enctype="multipart/form-data" class="col-6 mt-5 p-3 card shadow-lg container">
+    {% csrf_token %}
+    {% comment %} {{ form.as_p }} {% endcomment %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}
