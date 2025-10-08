@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block start %}
+  <h1>Student Model Form</h1>
+  <div class="container mt-5">
+    {% load crispy_forms_tags %}
+    <form class="col-6 card shadow-lg p-3 container" method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+{% endblock %}
