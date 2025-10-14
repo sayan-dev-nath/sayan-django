@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Django</title>
+    <link rel="stylesheet" href="{% static 'course/css/style.css' %}" />
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+
+    <img src="{% static 'course/image/wallpaper.jpg' %}" alt="aws" width="300px" />
+
+    <form action="">
+      <input type="button" value="Click Me" onclick="display()" />
+    </form>
+
+    <script src="{% static 'course/js/scripts.js' %}"></script>
+  </body>
+</html>
