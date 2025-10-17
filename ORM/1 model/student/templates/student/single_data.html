@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+  </head>
+  <body>
+    <h1>Single Student Data</h1>
+    {% if student %}
+      <ul>
+        <li>{{ student.name }} - {{ student.email }} - {{ student.city }}</li>
+      </ul>
+    {% else %}
+      <h1>No Data</h1>
+    {% endif %}
+  </body>
+</html>

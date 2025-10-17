@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+  </head>
+  <body>
+    <h1>Registration Form</h1>
+
+    <form action="">
+      {{ form.as_p }}
+      <button>Submit</button>
+    </form>
+
+    {% comment %} <form action="">
+      {{ form.first_name.label }}
+      {{ form.first_name.value }}
+      {{ form.first_name.html_name }}
+      {{ form.first_name.field.required }}
+      {{ form.first_name.help_text }}
+      <button>Submit</button>
+    </form> {% endcomment %}
+
+    {% comment %} <form action="">
+      <table>{{ form.as_table }}</table>
+      <button>Submit</button>
+    </form> {% endcomment %}
+
+    {% comment %} <form action="">
+      <ul>{{ form.as_ul }}</ul>
+      <button>Submit</button>
+    </form> {% endcomment %}
+
+    {% comment %} <form action="">
+      {{ form.as_p }}
+      <button>Submit</button>
+    </form> {% endcomment %}
+
+    {% comment %} <form action="">
+      {{ form.first_name }}
+      {{ form.last_name }}
+      <button>Submit</button>
+    </form> {% endcomment %}
+  </body>
+</html>

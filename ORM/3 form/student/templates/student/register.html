@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Register</title>
+    <style>
+      .custom-error-css {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Student Registration</h1>
+    <form action="" method="post" novalidate>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Submit" />
+    </form>
+
+    {% comment %} <form action="" method="post" novalidate>
+      {% csrf_token %}
+      {% for field in form %}
+        <div>
+          {{ field.label_tag }}{{ field }} <span class="custom-error-css">{{ field.errors|striptags }}</span>
+        </div>
+      {% endfor %}
+      <input type="submit" value="Submit" />
+    </form> {% endcomment %}
+  </body>
+</html>
