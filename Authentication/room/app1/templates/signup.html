@@ -4,37 +4,20 @@
   <div class="container mt-5">
     <h1 class="text-center">Signup Page</h1>
   </div>
-  {% if messages %}
-    {% for m in messages %}
-      <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="d-flex">
-          <div class="toast-body">{{ m }}</div>
-          <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-      </div>
-    {% endfor %}
-  {% endif %}
 
+  <!-- ✅ Signup Form -->
   <div class="container mt-5">
-    <form method="post" novalidate class="container col-4 card p-3 mx-auto shadow-lg">
+    <form method="post" novalidate class="container col-md-4 card p-4 mx-auto shadow-lg">
       {% csrf_token %}
       {% for fm in form %}
         {{ fm.label_tag }}
         {{ fm }}
-        {{ fm.errors|striptags }}
+        {{ fm.errors }}
       {% endfor %}
-      <button type="submit" class="btn mt-3 btn-success">SIGN UP</button><br />
-      <small>Already have an account. <a href="{% url 'loginpage' %}">Login</a></small>
+      <button type="submit" class="btn btn-success w-100 mt-2">SIGN UP</button>
+      <div class="text-center mt-3">
+        <small>Already have an account? <a href="{% url 'loginpage' %}">Login</a></small>
+      </div>
     </form>
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const toastElList = [].slice.call(document.querySelectorAll('.toast'))
-      toastElList.map(function (toastEl) {
-        const toast = new bootstrap.Toast(toastEl)
-        toast.show()
-      })
-    })
-  </script>
 {% endblock %}
