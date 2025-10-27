@@ -6,7 +6,7 @@ from django.contrib.auth.forms import (
     PasswordChangeForm,
     SetPasswordForm,
 )
-from .forms import RegisterForm
+from .forms import RegisterForm, ChangeUserData
 
 
 # Home page
@@ -16,10 +16,20 @@ def home(request):
 
 # Profile page
 def profile(request):
-    if request.user.is_authenticated:
-        return render(request, "profile.html", {"user": request.user})
-    else:
+    if not request.user.is_authenticated:
+        messages.warning(request, "You need to log in first to view your profile.")
         return redirect("loginpage")
+
+    form = ChangeUserData(request.POST or None, instance=request.user)
+
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        messages.success(request, "Account updated successfully!")
+        return redirect("profile")
+    elif request.method == "POST":
+        messages.error(request, "Please correct the errors below.")
+
+    return render(request, "profile.html", {"form": form, "user": request.user})
 
 
 # Signup page
