@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+  <div class="container mt-5 text-center">
+    <h1>This is Add_meal page</h1>
+  </div>
+  <div class="container mt-3">
+    <form method="post" enctype="multipart/form-data" class="container card col-4 p-3 mx-auto shadow-lg">
+      {% csrf_token %}
+      {{ form }}
+      <button type="submit" class="btn btn-success mt-3">Submit</button>
+    </form>
+  </div>
+{% endblock %}
