@@ -1,0 +1,53 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <form class="col-6 mx-auto p-3 card" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h3 class="text-center">Add Recipe</h3> <hr />
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Recipe Name</label>
+        <input type="text" class="form-control" name="recipe_name" value="{{ recipe.recipe_name }}" required />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Recipe Description</label>
+        <textarea class="form-control" name="recipe_description" required>{{ recipe.recipe_description }}</textarea>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Recipe Image</label>
+        <input type="file" class="form-control" name="recipe_image" required />
+      </div>
+      <button type="submit" class="btn btn-success">ADD RECIPE</button>
+    </form>
+  </div>
+
+  <div class="container mt-5 mb-5">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Recipe Name</th>
+          <th scope="col">Recipe Description</th>
+          <th scope="col">Recipe Image</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for recipe in recipes %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ recipe.recipe_name }}</td>
+            <td>{{ recipe.recipe_description }}</td>
+            <td>
+              <img src="/media/{{ recipe.recipe_image }}" alt="" width="150px" height="70px" />
+            </td>
+            <td>
+              <a href="/delete_recipe/{{ recipe.id }}" class="btn btn-danger">Delete</a>
+              <a href="/update_recipe/{{ recipe.id }}" class="btn btn-success">Update</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
