@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+  <div class="containr mt-5 text-center">
+    <h1>This is meals page</h1>
+    {% for food in foods %}
+      {{ food.food_name }} <br />
+      {{ food.food_description }} <br />
+      <img src="{{ food.food_image.url }}" alt="{{ p.name }}" width="150" /> <br />
+    {% endfor %}
+  </div>
+{% endblock %}
