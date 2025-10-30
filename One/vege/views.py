@@ -1,5 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Recipe
+from django.contrib import messages
+from django.contrib.auth.models import User
 
 
 def recipes(request):
@@ -14,20 +16,66 @@ def recipes(request):
             recipe_description=recipe_description,
             recipe_image=recipe_image,
         ).save()
+        messages.success(request, "Recipe add successfully")
         return redirect("recipes")
-
     queryset = Recipe.objects.all()
-    context = {"recipes": queryset}
 
+    if request.GET.get("search"):
+        queryset = queryset.filter(recipe_name__icontains=request.GET.get("search"))
+
+    context = {"recipes": queryset}
     return render(request, "recipes/recipes.html", context)
 
 
 def delete_recipe(request, id):
     Recipe.objects.get(id=id).delete()
+    messages.success(request, "Recipe delete successfully")
     return redirect("recipes")
 
 
 def update_recipe(request, id):
-    queryset = Recipe.objects.get(id=id)
-    context = {"recipe": queryset}
-    return render(request, "recipes/recipes.html", context)
+    recipe = get_object_or_404(Recipe, id=id)
+
+    if request.method == "POST":
+        recipe.recipe_name = request.POST.get("recipe_name")
+        recipe.recipe_description = request.POST.get("recipe_description")
+
+        if "recipe_image" in request.FILES:
+            recipe.recipe_image = request.FILES["recipe_image"]
+
+        recipe.save()
+        messages.success(request, "Recipe update successfully.")
+        return redirect("recipes")
+
+    context = {"recipe": recipe}
+    return render(request, "recipes/update.html", context)
+
+
+def login_page(request):
+    return render(request, "recipes/login.html")
+
+
+def register(request):
+    if request.method == "POST":
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        user = User.objects.filter(username=username)
+        if user.exists():
+            messages.warning(request, "Username already exists")
+            return redirect("register")
+
+        user = User.objects.create(
+            first_name=first_name,
+            last_name=last_name,
+            username=username,
+            password=password,
+        )
+        user.set_password(password)
+        user.save()
+        messages.success(request, "Registration successfully")
+        return redirect("login_page")
+
+    return render(request, "recipes/register.html")

@@ -1,8 +1,12 @@
 {% extends 'home/base.html' %}
 
+{% block title %}
+  Recipe
+{% endblock %}
+
 {% block content %}
   <div class="container mt-5">
-    <form class="col-6 mx-auto p-3 card" method="post" enctype="multipart/form-data">
+    <form class="col-6 mx-auto p-3 card shadow-lg" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <h3 class="text-center">Add Recipe</h3> <hr />
       <div class="mb-3">
@@ -21,10 +25,20 @@
     </form>
   </div>
 
+  <div class="container mt-5">
+    <form class="col-6 mx-auto p-3 card shadow-lg">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Search Recipe</label>
+        <input type="search" name="search" class="form-control" />
+      </div>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+  </div>
+
   <div class="container mt-5 mb-5">
-    <table class="table table-bordered">
+    <table class="table table-bordered shadow-lg">
       <thead>
-        <tr>
+        <tr class="text-center align-middle">
           <th scope="col">#</th>
           <th scope="col">Recipe Name</th>
           <th scope="col">Recipe Description</th>
@@ -34,7 +48,7 @@
       </thead>
       <tbody>
         {% for recipe in recipes %}
-          <tr>
+          <tr class="text-center align-middle">
             <th scope="row">{{ forloop.counter }}</th>
             <td>{{ recipe.recipe_name }}</td>
             <td>{{ recipe.recipe_description }}</td>
@@ -42,8 +56,8 @@
               <img src="/media/{{ recipe.recipe_image }}" alt="" width="150px" height="70px" />
             </td>
             <td>
-              <a href="/delete_recipe/{{ recipe.id }}" class="btn btn-danger">Delete</a>
-              <a href="/update_recipe/{{ recipe.id }}" class="btn btn-success">Update</a>
+              <a href="{% url 'delete_recipe' recipe.id %}" class="btn btn-danger">Delete</a>
+              <a href="{% url 'update_recipe' recipe.id %}" class="btn btn-success">Update</a>
             </td>
           </tr>
         {% endfor %}

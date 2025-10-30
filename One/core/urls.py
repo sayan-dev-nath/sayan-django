@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from home.views import home, success_page, about, contact
-from vege.views import recipes, delete_recipe, update_recipe
+from vege.views import recipes, delete_recipe, update_recipe, login_page, register
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -16,6 +16,8 @@ urlpatterns = [
     path("recipes/", recipes, name="recipes"),
     path("delete_recipe/<id>/", delete_recipe, name="delete_recipe"),
     path("update_recipe/<id>/", update_recipe, name="update_recipe"),
+    path("login_page/", login_page, name="login_page"),
+    path("register/", register, name="register"),
 ]
 
 if settings.DEBUG:
