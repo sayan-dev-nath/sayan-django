@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+<<<<<<< HEAD:One/vege/templates/recipes/recipes.html
   {% if request.user.is_authenticated %}
     {% block navbar %}
       <ul>
@@ -17,6 +18,12 @@
 
   {{ request.user }} <br />
   {{ request.user.first_name }}
+=======
+  {{ request.user }} <br />
+  {{ request.user.first_name }}
+  {{ request.user.last_name }}
+  <button><a href="{% url 'logout_page' %}" class="btn btn-danger">Logout</a></button>
+>>>>>>> d7d13a20ee84695da5ae812ad0c745750b132bc3:RecipeProject/One/vege/templates/recipes/recipes.html
 
   <div class="container mt-5">
     <form class="col-6 mx-auto p-3 card shadow-lg" method="post" enctype="multipart/form-data">

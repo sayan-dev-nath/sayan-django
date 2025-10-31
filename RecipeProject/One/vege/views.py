@@ -3,7 +3,10 @@ from .models import Recipe
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+<<<<<<< HEAD:One/vege/views.py
 from django.contrib.auth.decorators import login_required
+=======
+>>>>>>> d7d13a20ee84695da5ae812ad0c745750b132bc3:RecipeProject/One/vege/views.py
 
 
 @login_required(login_url="login_page")
@@ -37,7 +40,11 @@ def delete_recipe(request, id):
     return redirect("recipes")
 
 
+<<<<<<< HEAD:One/vege/views.py
 @login_required(login_url="login_page")
+=======
+###############################################################
+>>>>>>> d7d13a20ee84695da5ae812ad0c745750b132bc3:RecipeProject/One/vege/views.py
 def update_recipe(request, id):
     recipe = get_object_or_404(Recipe, id=id)
 
@@ -56,6 +63,7 @@ def update_recipe(request, id):
     return render(request, "recipes/update.html", context)
 
 
+##########################################################
 def login_page(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -70,20 +78,32 @@ def login_page(request):
             messages.error(request, "Invalid password")
             return redirect("login_page")
 
+<<<<<<< HEAD:One/vege/views.py
         login(request, user)
         messages.success(request, "Login successfully")
+=======
+        login(request, user)  # session
+>>>>>>> d7d13a20ee84695da5ae812ad0c745750b132bc3:RecipeProject/One/vege/views.py
         return redirect("recipes")
 
     return render(request, "recipes/login.html")
 
 
+<<<<<<< HEAD:One/vege/views.py
 @login_required(login_url="login_page")
+=======
+################################################
+>>>>>>> d7d13a20ee84695da5ae812ad0c745750b132bc3:RecipeProject/One/vege/views.py
 def logout_page(request):
     logout(request)
     messages.success(request, "Logout successfully")
     return redirect("login_page")
 
 
+<<<<<<< HEAD:One/vege/views.py
+=======
+#################################################
+>>>>>>> d7d13a20ee84695da5ae812ad0c745750b132bc3:RecipeProject/One/vege/views.py
 def register(request):
     if request.method == "POST":
         first_name = request.POST.get("first_name")
