@@ -5,6 +5,19 @@
 {% endblock %}
 
 {% block content %}
+  {% if request.user.is_authenticated %}
+    {% block navbar %}
+      <ul>
+        <li>
+          <a href="{% url 'logout_page' %}">Logout</a>
+        </li>
+      </ul>
+    {% endblock %}
+  {% endif %}
+
+  {{ request.user }} <br />
+  {{ request.user.first_name }}
+
   <div class="container mt-5">
     <form class="col-6 mx-auto p-3 card shadow-lg" method="post" enctype="multipart/form-data">
       {% csrf_token %}

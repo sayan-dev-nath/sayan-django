@@ -2,8 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Recipe
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url="login_page")
 def recipes(request):
     if request.method == "POST":
         data = request.POST
@@ -27,12 +30,14 @@ def recipes(request):
     return render(request, "recipes/recipes.html", context)
 
 
+@login_required(login_url="login_page")
 def delete_recipe(request, id):
     Recipe.objects.get(id=id).delete()
     messages.success(request, "Recipe delete successfully")
     return redirect("recipes")
 
 
+@login_required(login_url="login_page")
 def update_recipe(request, id):
     recipe = get_object_or_404(Recipe, id=id)
 
@@ -52,7 +57,31 @@ def update_recipe(request, id):
 
 
 def login_page(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        if not User.objects.filter(username=username).exists():
+            messages.error(request, "Invalid username")
+            return redirect("login_page")
+
+        user = authenticate(username=username, password=password)
+        if user is None:
+            messages.error(request, "Invalid password")
+            return redirect("login_page")
+
+        login(request, user)
+        messages.success(request, "Login successfully")
+        return redirect("recipes")
+
     return render(request, "recipes/login.html")
+
+
+@login_required(login_url="login_page")
+def logout_page(request):
+    logout(request)
+    messages.success(request, "Logout successfully")
+    return redirect("login_page")
 
 
 def register(request):
