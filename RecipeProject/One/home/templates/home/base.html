@@ -38,21 +38,13 @@
         {% for m in messages %}
           <div class="toast align-items-center text-white 
             {% if m.tags == 'error' %}
-              
               bg-danger
-
             {% elif m.tags == 'warning' %}
-              
               bg-warning text-dark
-
             {% elif m.tags == 'info' %}
-              
               bg-info text-dark
-
             {% else %}
-              
               bg-success
-
             {% endif %}
             border-0 fade show mb-2 shadow-lg"
             role="alert"
