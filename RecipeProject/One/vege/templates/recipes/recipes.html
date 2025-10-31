@@ -5,6 +5,11 @@
 {% endblock %}
 
 {% block content %}
+  {{ request.user }} <br />
+  {{ request.user.first_name }}
+  {{ request.user.last_name }}
+  <button><a href="{% url 'logout_page' %}" class="btn btn-danger">Logout</a></button>
+
   <div class="container mt-5">
     <form class="col-6 mx-auto p-3 card shadow-lg" method="post" enctype="multipart/form-data">
       {% csrf_token %}
