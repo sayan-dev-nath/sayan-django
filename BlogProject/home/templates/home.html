@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Home
+{% endblock %}
+
+{% block content %}
+  <div class="row container mx-auto mb-5">
+    {% for d in data %}
+      <div class="col-sm-4 mt-3 mb-sm-0">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ d.post_title }}</h5>
+            <p class="card-text">{{ d.post_content }}</p>
+            <p>
+              <small>Author: {{ d.post_author.author_name }}</small><br />
+              <small>
+                Category:{% for c in d.post_category.all %}
+                  <button>{{ c.category_name }}</button>
+                {% endfor %}
+              </small>
+            </p>
+            <a href="{% url 'edit_post' d.id %}" class="btn btn-success">Edit</a>
+            <a href="{% url 'delete_post' d.id %}" class="btn btn-danger">Delete</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
