@@ -3,11 +3,12 @@ from .models import Post
 
 
 class PostForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs.update({"class": "form-control"})
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     for field in self.fields.values():
+    #         field.widget.attrs.update({"class": "form-control"})
 
     class Meta:
         model = Post
-        fields = "__all__"
+        # fields = "__all__"
+        exclude = ["post_author"]

@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from .forms import CategoryForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required
 def add_category(request):
     if request.method == "POST":
         form = CategoryForm(request.POST)

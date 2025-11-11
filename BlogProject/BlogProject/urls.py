@@ -7,5 +7,4 @@ urlpatterns = [
     path("category/", include("categories.urls")),
     path("", include("home.urls")),
     path("post/", include("posts.urls")),
-    path("profile/", include("profiles.urls")),
 ]
