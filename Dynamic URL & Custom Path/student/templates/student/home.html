@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Home Page</h1>
+    <h2>Student List:</h2>
+    <ul>
+      <li>
+        <a href="{% url 'profile' 1111 %}">student 1</a>
+      </li>
+      <li>
+        <a href="{% url 'profile' 3333 %}">student 3</a>
+      </li>
+      <li>
+        <a href="{% url 'profile' 5555 %}">student 5</a>
+      </li>
+      <li>
+        <a href="{% url 'profile' 7777 %}">student 7</a>
+      </li>
+      <li>
+        <a href="{% url 'profile' 9999 %}">student 9</a>
+      </li>
+    </ul>
+  </body>
+</html>
