@@ -16,21 +16,29 @@
         <li>
           <a href="{% url 'home' %}">Home</a>
         </li>
-        <li>
-          <a href="{% url 'page' %}">Page</a>
-        </li>
-        <li>
-          <a href="{% url 'post' %}">Post</a>
-        </li>
-        <li>
-          <a href="{% url 'song' %}">Song</a>
-        </li>
+      </ul>
+      <ul>
         <li>
           <a href="{% url 'user' %}">User</a>
         </li>
       </ul>
+      <ul>
+        <li>
+          <a href="{% url 'page' %}">Page</a>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <a href="{% url 'post' %}">Post</a>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <a href="{% url 'song' %}">Song</a>
+        </li>
+      </ul>
     </nav>
-    <hr />
+
     {% block content %}
 
     {% endblock %}

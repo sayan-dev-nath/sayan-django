@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {% for stu in all_student %}
+      <h1>
+        {{ stu.name }}
+        {{ stu.roll }}
+        {{ stu.course }}
+      </h1>
+    {% endfor %}
+    <hr />
+    {% comment %} {% for stu in freshers %}
+      <h1>
+        {{ stu.name }}
+        {{ stu.roll }}
+        {{ stu.course }}
+      </h1>
+    {% endfor %} {% endcomment %}
+  </body>
+</html>
